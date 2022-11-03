@@ -1,15 +1,18 @@
 #include "crc/code_crc32.hh"
 
 #include <cinttypes>
+#include <mutex>
 
 namespace crc {
 
 constexpr uint32_t kPoly = 0xEDB88320ul;
 
+static std::mutex kLock;
 static bool kTableInit = false;
 static uint32_t kTable[256];
 
 void initTable() {
+  std::lock_guard<std::mutex> lockGuard(kLock);
 
   if (kTableInit) {
     return;

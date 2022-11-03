@@ -1,13 +1,19 @@
 #include "crc/code_crckrmit.hh"
 
+#include <cinttypes>
+#include <mutex>
+
 namespace crc {
 
 constexpr uint16_t kPoly = 0x8408;
 
+static std::mutex kLock;
 static bool kInitTable = false;
 static uint16_t kTable[256];
 
-void initTable(void) {
+void initTable() {
+  std::lock_guard<std::mutex> lockGuard(kLock);
+
   if (kInitTable) {
     return;
   }

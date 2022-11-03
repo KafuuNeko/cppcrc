@@ -1,6 +1,7 @@
 #include "crc/code_crc64.hh"
 
 #include <cinttypes>
+#include <mutex>
 
 namespace crc {
 
@@ -8,10 +9,12 @@ static constexpr uint64_t kPoly = 0x42F0E1EBA9EA3693ull;
 static constexpr uint64_t kStartECMA = 0x0000000000000000ull;
 static constexpr uint64_t kStartWE = 0xFFFFFFFFFFFFFFFFull;
 
+static std::mutex kLock;
 static bool kTableInit = false;
 static uint64_t kTable[256];
 
 void initTable() {
+  std::lock_guard<std::mutex> lockGuard(kLock);
 
   if (kTableInit) {
     return;

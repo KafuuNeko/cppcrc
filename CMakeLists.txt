@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9)
+cmake_minimum_required(VERSION 3.0)
 project(cppcrc)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -15,6 +15,6 @@ add_library(cppcrc
     src/code_crckrmit.cc
 )
 
-add_executable(crc8 tests/crc8.cc)
-target_link_libraries(crc8 cppcrc)
+add_executable(testcrc tests/testcrc.cc)
+target_link_libraries(testcrc cppcrc)
 
