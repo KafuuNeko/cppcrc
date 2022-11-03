@@ -6,7 +6,7 @@ namespace crc {
 
 class CodeCrc8 : public CodeBase {
 public:
-  static CodeBase::const_ptr instance();
+  static CodeBase::ShareConstPtr instance();
 
 private:
   virtual uint64_t startValue() const noexcept override { return 0x00; }

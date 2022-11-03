@@ -10,8 +10,8 @@ public:
 
   CodeCrc64(Type type) noexcept : mType(type) {}
 
-  static CodeBase::const_ptr ecmaInstance();
-  static CodeBase::const_ptr weInstance();
+  static CodeBase::ShareConstPtr ecmaInstance();
+  static CodeBase::ShareConstPtr weInstance();
 
 private:
   const Type mType;

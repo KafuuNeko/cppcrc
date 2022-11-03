@@ -39,12 +39,12 @@ void initTable() {
   kTableInit = true;
 }
 
-CodeBase::const_ptr CodeCrc64::ecmaInstance() {
+CodeBase::ShareConstPtr CodeCrc64::ecmaInstance() {
   static auto ptr = std::make_shared<CodeCrc64>(Type::ecma);
   return ptr;
 }
 
-CodeBase::const_ptr CodeCrc64::weInstance() {
+CodeBase::ShareConstPtr CodeCrc64::weInstance() {
   static auto ptr = std::make_shared<CodeCrc64>(Type::we);
   return ptr;
 }

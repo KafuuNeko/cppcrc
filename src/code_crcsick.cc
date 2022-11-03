@@ -4,7 +4,7 @@
 namespace crc {
 constexpr uint16_t kPoly = 0x8005;
 
-CodeBase::const_ptr CodeCrcSick::instance() {
+CodeBase::ShareConstPtr CodeCrcSick::instance() {
   static auto ptr = std::make_shared<CodeCrcSick>();
   return ptr;
 }

@@ -5,7 +5,7 @@ namespace crc {
 
 class CodeCrcSick : public CodeBase {
 public:
-  static CodeBase::const_ptr instance();
+  static CodeBase::ShareConstPtr instance();
 
 private:
   virtual uint64_t updateCrc(uint64_t value, uint8_t c,

@@ -24,10 +24,10 @@ namespace crc {
 class Encoder {
 
 public:
-  explicit Encoder(const CodeBase::const_ptr &code) noexcept
+  explicit Encoder(const CodeBase::ShareConstPtr &code) noexcept
       : mCode(code), mPreByte(0) {}
 
-  explicit Encoder(const CodeBase::const_ptr &code, std::istream &input)
+  explicit Encoder(const CodeBase::ShareConstPtr &code, std::istream &input)
       : Encoder(code) {
     this->update(input);
   }
@@ -39,13 +39,13 @@ public:
                              std::remove_reference_t<decltype(*(Iterator{}))>>>,
                          uint8_t>,
           int> = 0>
-  explicit Encoder(const CodeBase::const_ptr &code, Iterator first,
+  explicit Encoder(const CodeBase::ShareConstPtr &code, Iterator first,
                    Iterator last)
       : Encoder(code) {
     this->update(first, last);
   }
 
-  explicit Encoder(const CodeBase::const_ptr &code, std::string_view str)
+  explicit Encoder(const CodeBase::ShareConstPtr &code, std::string_view str)
       : Encoder(code) {
     this->update(str);
   }

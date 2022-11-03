@@ -9,7 +9,7 @@ class CodeBase {
   friend class Encoder;
 
 public:
-  using const_ptr = std::shared_ptr<const CodeBase>;
+  using ShareConstPtr = std::shared_ptr<const CodeBase>;
   virtual ~CodeBase() noexcept = default;
 
 private:

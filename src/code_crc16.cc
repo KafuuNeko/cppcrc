@@ -36,7 +36,7 @@ void initTable() {
   kTableInit = true;
 }
 
-CodeBase::const_ptr CodeCrc16::instance() {
+CodeBase::ShareConstPtr CodeCrc16::instance() {
   static auto ptr = std::make_shared<CodeCrc16>();
   return ptr;
 }

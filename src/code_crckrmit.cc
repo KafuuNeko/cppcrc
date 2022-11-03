@@ -33,7 +33,7 @@ void initTable(void) {
   kInitTable = true;
 }
 
-CodeBase::const_ptr CodeCrcKrmit::instance() {
+CodeBase::ShareConstPtr CodeCrcKrmit::instance() {
   static auto ptr = std::make_shared<CodeCrcKrmit>();
   return ptr;
 }
