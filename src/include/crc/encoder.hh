@@ -25,7 +25,7 @@ class Encoder {
 
 public:
   explicit Encoder(const CodeBase::ShareConstPtr &code) noexcept
-      : mCode(code), mPreByte(0) {}
+      : mCode(code), mValue(code->startValue()), mPreByte(0) {}
 
   explicit Encoder(const CodeBase::ShareConstPtr &code, std::istream &input)
       : Encoder(code) {
@@ -51,7 +51,7 @@ public:
   }
 
   void update(uint8_t c) noexcept {
-    mCode->updateCrc(mValue, c, mPreByte);
+    mValue = mCode->updateCrc(mValue, c, mPreByte);
     mPreByte = c;
   }
 

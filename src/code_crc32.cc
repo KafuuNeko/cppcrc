@@ -1,18 +1,26 @@
 #include "crc/code_crc32.hh"
 
 #include <cinttypes>
+
+#ifdef CPPCRC_THREADSAFE
 #include <mutex>
+#endif
 
 namespace crc {
 
 constexpr uint32_t kPoly = 0xEDB88320ul;
 
+#ifdef CPPCRC_THREADSAFE
 static std::mutex kLock;
+#endif
+
 static bool kTableInit = false;
 static uint32_t kTable[256];
 
 void initTable() {
+#ifdef CPPCRC_THREADSAFE
   std::lock_guard<std::mutex> lockGuard(kLock);
+#endif
 
   if (kTableInit) {
     return;
