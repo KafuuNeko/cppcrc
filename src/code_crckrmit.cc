@@ -17,7 +17,7 @@ static std::mutex kLock;
 static bool kInitTable = false;
 static uint16_t kTable[256];
 
-void initTable() {
+static void initTable() {
 
 #ifdef CPPCRC_THREADSAFE
   std::lock_guard<std::mutex> lockGuard(kLock);
