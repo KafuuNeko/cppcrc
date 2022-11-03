@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(src/include)
 
-add_library(libCrc 
+add_library(cppcrc 
     src/code_crc8.cc
     src/code_crc16.cc
     src/code_crc32.cc
@@ -16,5 +16,5 @@ add_library(libCrc
 )
 
 add_executable(crc8 tests/crc8.cc)
-target_link_libraries(crc8 libCrc)
+target_link_libraries(crc8 cppcrc)
 
