@@ -10,7 +10,7 @@ CodeBase::ShareConstPtr CodeCrcSick::instance() {
 }
 
 uint64_t CodeCrcSick::updateCrc(uint64_t value, uint8_t c, uint8_t pre) const {
-  uint16_t crcValue = static_cast<uint16_t>(value);
+  auto crcValue = static_cast<uint16_t>(value);
 
   uint16_t high = 0x00FF & static_cast<uint16_t>(c);
   uint16_t low = (0x00FF & static_cast<uint16_t>(pre)) << 8;

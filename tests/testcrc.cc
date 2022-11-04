@@ -6,6 +6,7 @@
 #include "crc/code_crc32.hh"
 #include "crc/code_crc64.hh"
 #include "crc/code_crc8.hh"
+#include "crc/code_crcdnp.hh"
 #include "crc/code_crckrmit.hh"
 #include "crc/code_crcsick.hh"
 #include "crc/encoder.hh"
@@ -18,7 +19,8 @@ int main() {
        {"crc64_ecma", crc::CodeCrc64::ecmaInstance()},
        {"crc64_we", crc::CodeCrc64::weInstance()},
        {"crckrmit", crc::CodeCrcKrmit::instance()},
-       {"crcsick", crc::CodeCrcSick::instance()}};
+       {"crcsick", crc::CodeCrcSick::instance()},
+       {"crcdnp", crc::CodeCrcDnp::instance()}};
 
   std::string_view str = "Hello World";
   for (auto &element : codes) {

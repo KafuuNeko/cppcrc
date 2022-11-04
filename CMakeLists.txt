@@ -17,6 +17,7 @@ add_library(cppcrc
     src/code_crc64.cc
     src/code_crcsick.cc
     src/code_crckrmit.cc
+    src/code_crcdnp.cc
 )
 
 add_executable(testcrc tests/testcrc.cc)

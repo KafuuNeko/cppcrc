@@ -28,7 +28,7 @@ static void initTable() {
 
   for (uint32_t i = 0; i < 256; i++) {
 
-    uint32_t crc = i;
+    auto crc = i;
 
     for (uint32_t j = 0; j < 8; j++) {
       if (crc & 0x00000001L) {
@@ -53,7 +53,7 @@ uint64_t CodeCrc32::updateCrc(uint64_t value, uint8_t c, uint8_t pre) const {
   if (!kTableInit) {
     initTable();
   }
-  uint32_t crc32Value = static_cast<uint32_t>(value);
+  auto crc32Value = static_cast<uint32_t>(value);
   return (crc32Value >> 8) ^
          kTable[(crc32Value ^ static_cast<uint32_t>(c)) & 0x000000FFul];
 }

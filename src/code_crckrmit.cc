@@ -54,7 +54,7 @@ CodeBase::ShareConstPtr CodeCrcKrmit::instance() {
 }
 
 uint64_t CodeCrcKrmit::updateCrc(uint64_t value, uint8_t c, uint8_t pre) const {
-  uint16_t crcValue = static_cast<uint16_t>(value);
+  auto crcValue = static_cast<uint16_t>(value);
 
   if (!kInitTable) {
     initTable();

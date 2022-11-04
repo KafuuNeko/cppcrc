@@ -57,7 +57,7 @@ uint64_t CodeCrc16::updateCrc(uint64_t value, uint8_t c, uint8_t pre) const {
   if (!kTableInit) {
     initTable();
   }
-  uint16_t crc16Value = static_cast<uint16_t>(value);
+  auto crc16Value = static_cast<uint16_t>(value);
   return (crc16Value >> 8) ^
          kTable[(crc16Value ^ static_cast<uint16_t>(c)) & 0x00FF];
 }
