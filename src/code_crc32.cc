@@ -28,17 +28,12 @@ static void initTable() {
 
   for (uint32_t i = 0; i < 256; i++) {
 
-    auto crc = i;
+    kTable[i] = i;
 
     for (uint32_t j = 0; j < 8; j++) {
-      if (crc & 0x00000001L) {
-        crc = (crc >> 1) ^ kPoly;
-      } else {
-        crc = crc >> 1;
-      }
+      kTable[i] =
+          (kTable[i] & 0x01L) ? (kTable[i] >> 1) ^ kPoly : kTable[i] >> 1;
     }
-
-    kTable[i] = crc;
   }
 
   kTableInit = true;

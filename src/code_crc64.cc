@@ -30,21 +30,19 @@ static void initTable() {
 
   for (uint64_t i = 0; i < 256; i++) {
 
-    uint64_t crc = 0;
+    uint64_t crcValue = 0;
     uint64_t c = i << 56;
 
     for (uint64_t j = 0; j < 8; j++) {
 
-      if ((crc ^ c) & 0x8000000000000000ull) {
-        crc = (crc << 1) ^ kPoly;
-      } else {
-        crc = crc << 1;
-      }
+      crcValue = ((crcValue ^ c) & 0x8000000000000000ull)
+                     ? ((crcValue << 1) ^ kPoly)
+                     : (crcValue << 1);
 
       c = c << 1;
     }
 
-    kTable[i] = crc;
+    kTable[i] = crcValue;
   }
 
   kTableInit = true;

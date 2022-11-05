@@ -33,12 +33,7 @@ static void initTable() {
     uint16_t c = i;
 
     for (uint16_t j = 0; j < 8; j++) {
-
-      if ((crc ^ c) & 0x0001)
-        crc = (crc >> 1) ^ kPoly;
-      else
-        crc = crc >> 1;
-
+      crc = ((crc ^ c) & 0x0001) ? ((crc >> 1) ^ kPoly) : (crc >> 1);
       c = c >> 1;
     }
 
