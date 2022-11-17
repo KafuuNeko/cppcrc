@@ -6,7 +6,7 @@
 #include <mutex>
 #endif
 
-namespace crc {
+namespace cppcrc {
 
 constexpr uint16_t kPoly = 0x8408;
 
@@ -58,4 +58,4 @@ uint64_t CodeCrcKrmit::updateCrc(uint64_t value, uint8_t c) {
   return (crcValue >> 8) ^
          kTable[(crcValue ^ static_cast<uint16_t>(c)) & 0x00FF];
 }
-} // namespace crc
+} // namespace cppcrc

@@ -1,7 +1,7 @@
 #include "cppcrc/code_crcsick.hh"
 #include <cstdint>
 
-namespace crc {
+namespace cppcrc {
 constexpr uint16_t kPoly = 0x8005;
 
 CodeBase::SharedConstPtr CodeCrcSick::instance() {
@@ -23,4 +23,4 @@ uint64_t CodeCrcSick::updateCrc(uint64_t value, uint8_t c) {
   return crcValue;
 }
 
-} // namespace crc
+} // namespace cppcrc

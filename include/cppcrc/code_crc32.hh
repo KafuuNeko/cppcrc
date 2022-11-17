@@ -2,7 +2,7 @@
 
 #include "code_base.hh"
 
-namespace crc {
+namespace cppcrc {
 
 class CodeCrc32 : public CodeBase {
 public:
@@ -22,4 +22,4 @@ private:
   }
 };
 
-} // namespace crc
+} // namespace cppcrc

@@ -6,7 +6,7 @@
 #include <mutex>
 #endif
 
-namespace crc {
+namespace cppcrc {
 
 static constexpr uint64_t kPoly = 0x42F0E1EBA9EA3693ull;
 static constexpr uint64_t kStartECMA = 0x0000000000000000ull;
@@ -81,4 +81,4 @@ uint64_t CodeCrc64::updateCrc(uint64_t value, uint8_t c) {
                                0x00000000000000FFull];
 }
 
-} // namespace crc
+} // namespace cppcrc

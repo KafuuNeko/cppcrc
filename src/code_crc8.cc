@@ -2,7 +2,7 @@
 
 #include <cinttypes>
 
-namespace crc {
+namespace cppcrc {
 
 static const uint8_t kSht75Table[256] = {
     0,   49,  98,  83,  196, 245, 166, 151, 185, 136, 219, 234, 125, 76,  31,
@@ -33,4 +33,4 @@ uint64_t CodeCrc8::updateCrc(uint64_t value, uint8_t c) {
   return kSht75Table[c ^ static_cast<uint8_t>(value)];
 }
 
-} // namespace crc
+} // namespace cppcrc

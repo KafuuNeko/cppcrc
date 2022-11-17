@@ -6,7 +6,7 @@
 #include <mutex>
 #endif
 
-namespace crc {
+namespace cppcrc {
 
 constexpr uint32_t kPoly = 0xEDB88320ul;
 
@@ -53,4 +53,4 @@ uint64_t CodeCrc32::updateCrc(uint64_t value, uint8_t c) {
          kTable[(crc32Value ^ static_cast<uint32_t>(c)) & 0x000000FFul];
 }
 
-} // namespace crc
+} // namespace cppcrc

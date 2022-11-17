@@ -3,7 +3,7 @@
 #include <cinttypes>
 #include <memory>
 
-namespace crc {
+namespace cppcrc {
 
 class CodeBase {
   friend class Encoder;
@@ -23,4 +23,4 @@ private:
   virtual uint64_t result(uint64_t value) const noexcept { return value; }
 };
 
-}; // namespace crc
+}; // namespace cppcrc

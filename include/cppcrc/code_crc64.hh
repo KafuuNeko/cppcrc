@@ -2,7 +2,7 @@
 
 #include "code_base.hh"
 
-namespace crc {
+namespace cppcrc {
 
 class CodeCrc64 : public CodeBase {
 public:
@@ -28,4 +28,4 @@ private:
   virtual uint64_t updateCrc(uint64_t value, uint8_t c) override;
 };
 
-} // namespace crc
+} // namespace cppcrc

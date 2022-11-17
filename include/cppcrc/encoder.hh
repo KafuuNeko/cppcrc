@@ -19,7 +19,7 @@
 #include <string_view>
 #include <type_traits>
 
-namespace crc {
+namespace cppcrc {
 
 class Encoder {
 
@@ -96,4 +96,4 @@ private:
   uint64_t mValue;
 };
 
-} // namespace crc
+} // namespace cppcrc

@@ -1,7 +1,7 @@
 #pragma once
 #include "code_base.hh"
 
-namespace crc {
+namespace cppcrc {
 
 class CodeCrcKrmit : public CodeBase {
 public:
@@ -22,4 +22,4 @@ private:
   }
 };
 
-} // namespace crc
+} // namespace cppcrc

@@ -2,7 +2,7 @@
 #include "code_base.hh"
 #include <memory>
 
-namespace crc {
+namespace cppcrc {
 
 // https://srecord.sourceforge.net/crc16-ccitt.html
 class CodeCrcCcitt : public CodeBase {
@@ -17,4 +17,4 @@ private:
   virtual uint64_t updateCrc(uint64_t value, uint8_t c) override;
 };
 
-} // namespace crc
+} // namespace cppcrc
