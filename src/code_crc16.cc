@@ -1,4 +1,4 @@
-#include "crc/code_crc16.hh"
+#include "cppcrc/code_crc16.hh"
 
 #include <cinttypes>
 
@@ -48,12 +48,12 @@ static void initTable() {
   kTableInit = true;
 }
 
-CodeBase::ShareConstPtr CodeCrc16::instance() {
-  static auto ptr = std::make_shared<CodeCrc16>();
-  return ptr;
+CodeBase::SharedConstPtr CodeCrc16::instance() {
+  static auto uniqueInstance = std::make_shared<CodeCrc16>();
+  return uniqueInstance;
 }
 
-uint64_t CodeCrc16::updateCrc(uint64_t value, uint8_t c, uint8_t pre) const {
+uint64_t CodeCrc16::updateCrc(uint64_t value, uint8_t c) {
   if (!kTableInit) {
     initTable();
   }

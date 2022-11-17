@@ -1,4 +1,4 @@
-#include "crc/code_crc8.hh"
+#include "cppcrc/code_crc8.hh"
 
 #include <cinttypes>
 
@@ -24,12 +24,12 @@ static const uint8_t kSht75Table[256] = {
     130, 179, 224, 209, 70,  119, 36,  21,  59,  10,  89,  104, 255, 206, 157,
     172};
 
-CodeBase::ShareConstPtr CodeCrc8::instance() {
-  static auto ptr = std::make_shared<CodeCrc8>();
-  return ptr;
+CodeBase::SharedConstPtr CodeCrc8::instance() {
+  static auto uniqueInstance = std::make_shared<CodeCrc8>();
+  return uniqueInstance;
 }
 
-uint64_t CodeCrc8::updateCrc(uint64_t value, uint8_t c, uint8_t pre) const {
+uint64_t CodeCrc8::updateCrc(uint64_t value, uint8_t c) {
   return kSht75Table[c ^ static_cast<uint8_t>(value)];
 }
 

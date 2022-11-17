@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_CXX_FLAGS "-pthread")
 
-include_directories(src/include)
+include_directories(include)
 
 add_definitions(-DCPPCRC_THREADSAFE) 
 

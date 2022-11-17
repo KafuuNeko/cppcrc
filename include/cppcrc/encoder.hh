@@ -24,10 +24,10 @@ namespace crc {
 class Encoder {
 
 public:
-  explicit Encoder(const CodeBase::ShareConstPtr &code) noexcept
-      : mCode(code), mValue(code->startValue()), mPreByte(0) {}
+  explicit Encoder(const CodeBase::SharedConstPtr &code) noexcept
+      : mCodePrototype(code), mCode(code->clone()), mValue(code->startValue()) {  }
 
-  explicit Encoder(const CodeBase::ShareConstPtr &code, std::istream &input)
+  explicit Encoder(const CodeBase::SharedConstPtr &code, std::istream &input)
       : Encoder(code) {
     this->update(input);
   }
@@ -39,20 +39,19 @@ public:
                              std::remove_reference_t<decltype(*(Iterator{}))>>>,
                          uint8_t>,
           int> = 0>
-  explicit Encoder(const CodeBase::ShareConstPtr &code, Iterator first,
+  explicit Encoder(const CodeBase::SharedConstPtr &code, Iterator first,
                    Iterator last)
       : Encoder(code) {
     this->update(first, last);
   }
 
-  explicit Encoder(const CodeBase::ShareConstPtr &code, std::string_view str)
+  explicit Encoder(const CodeBase::SharedConstPtr &code, std::string_view str)
       : Encoder(code) {
     this->update(str);
   }
 
   void update(uint8_t c) noexcept {
-    mValue = mCode->updateCrc(mValue, c, mPreByte);
-    mPreByte = c;
+    mValue = mCode->updateCrc(mValue, c);
   }
 
   void update(std::istream &input) {
@@ -84,16 +83,17 @@ public:
   void update(std::string_view str) { this->update(str.cbegin(), str.cend()); }
 
   void reset() noexcept {
+    mCode = mCodePrototype->clone();
     mValue = mCode->startValue();
-    mPreByte = 0;
   }
 
   uint64_t value() noexcept { return mCode->result(mValue); }
 
 private:
-  std::shared_ptr<const CodeBase> mCode;
+  std::shared_ptr<const CodeBase> mCodePrototype;
+  std::unique_ptr<CodeBase> mCode;
+  
   uint64_t mValue;
-  uint8_t mPreByte;
 };
 
 } // namespace crc

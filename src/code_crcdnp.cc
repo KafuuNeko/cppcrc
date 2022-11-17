@@ -1,4 +1,4 @@
-#include "crc/code_crcdnp.hh"
+#include "cppcrc/code_crcdnp.hh"
 
 #ifdef CPPCRC_THREADSAFE
 #include <mutex>
@@ -15,9 +15,9 @@ static std::mutex kLock;
 static bool kTableInit = false;
 static uint16_t kTable[256];
 
-CodeBase::ShareConstPtr CodeCrcDnp::instance() {
-  static auto ptr = std::make_shared<CodeCrcDnp>();
-  return ptr;
+CodeBase::SharedConstPtr CodeCrcDnp::instance() {
+  static auto uniqueInstance = std::make_shared<CodeCrcDnp>();
+  return uniqueInstance;
 }
 
 static void initCrcdnpTab() {
@@ -45,7 +45,7 @@ static void initCrcdnpTab() {
   kTableInit = true;
 }
 
-uint64_t CodeCrcDnp::updateCrc(uint64_t value, uint8_t c, uint8_t pre) const {
+uint64_t CodeCrcDnp::updateCrc(uint64_t value, uint8_t c) {
   if (!kTableInit) {
     initCrcdnpTab();
   }

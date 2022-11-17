@@ -1,4 +1,4 @@
-#include "crc/code_crckrmit.hh"
+#include "cppcrc/code_crckrmit.hh"
 
 #include <cinttypes>
 
@@ -43,12 +43,12 @@ static void initTable() {
   kInitTable = true;
 }
 
-CodeBase::ShareConstPtr CodeCrcKrmit::instance() {
-  static auto ptr = std::make_shared<CodeCrcKrmit>();
-  return ptr;
+CodeBase::SharedConstPtr CodeCrcKrmit::instance() {
+  static auto uniqueInstance = std::make_shared<CodeCrcKrmit>();
+  return uniqueInstance;
 }
 
-uint64_t CodeCrcKrmit::updateCrc(uint64_t value, uint8_t c, uint8_t pre) const {
+uint64_t CodeCrcKrmit::updateCrc(uint64_t value, uint8_t c) {
   auto crcValue = static_cast<uint16_t>(value);
 
   if (!kInitTable) {

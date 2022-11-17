@@ -1,4 +1,4 @@
-#include "crc/code_crc64.hh"
+#include "cppcrc/code_crc64.hh"
 
 #include <cinttypes>
 
@@ -48,14 +48,14 @@ static void initTable() {
   kTableInit = true;
 }
 
-CodeBase::ShareConstPtr CodeCrc64::ecmaInstance() {
-  static auto ptr = std::make_shared<CodeCrc64>(Type::ecma);
-  return ptr;
+CodeBase::SharedConstPtr CodeCrc64::ecmaInstance() {
+  static auto uniqueInstance = std::make_shared<CodeCrc64>(Type::ecma);
+  return uniqueInstance;
 }
 
-CodeBase::ShareConstPtr CodeCrc64::weInstance() {
-  static auto ptr = std::make_shared<CodeCrc64>(Type::we);
-  return ptr;
+CodeBase::SharedConstPtr CodeCrc64::weInstance() {
+  static auto uniqueInstance = std::make_shared<CodeCrc64>(Type::we);
+  return uniqueInstance;
 }
 
 uint64_t CodeCrc64::startValue() const noexcept {
@@ -73,7 +73,7 @@ uint64_t CodeCrc64::result(uint64_t value) const noexcept {
   return value;
 }
 
-uint64_t CodeCrc64::updateCrc(uint64_t value, uint8_t c, uint8_t pre) const {
+uint64_t CodeCrc64::updateCrc(uint64_t value, uint8_t c) {
   if (!kTableInit) {
     initTable();
   }
