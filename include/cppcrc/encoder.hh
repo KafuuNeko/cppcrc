@@ -24,10 +24,10 @@ namespace cppcrc {
 class Encoder {
 
 public:
-  explicit Encoder(const CodeBase::SharedConstPtr &code) noexcept
-      : mCodePrototype(code), mCode(code->clone()), mValue(code->startValue()) {  }
+  explicit Encoder(const CodeBase &code) noexcept
+      : mCodePrototype(code), mCode(code.clone()), mValue(code.startValue()) {  }
 
-  explicit Encoder(const CodeBase::SharedConstPtr &code, std::istream &input)
+  explicit Encoder(const CodeBase &code, std::istream &input)
       : Encoder(code) {
     this->update(input);
   }
@@ -39,13 +39,13 @@ public:
                              std::remove_reference_t<decltype(*(Iterator{}))>>>,
                          uint8_t>,
           int> = 0>
-  explicit Encoder(const CodeBase::SharedConstPtr &code, Iterator first,
+  explicit Encoder(const CodeBase &code, Iterator first,
                    Iterator last)
       : Encoder(code) {
     this->update(first, last);
   }
 
-  explicit Encoder(const CodeBase::SharedConstPtr &code, std::string_view str)
+  explicit Encoder(const CodeBase &code, std::string_view str)
       : Encoder(code) {
     this->update(str);
   }
@@ -83,14 +83,14 @@ public:
   void update(std::string_view str) { this->update(str.cbegin(), str.cend()); }
 
   void reset() noexcept {
-    mCode = mCodePrototype->clone();
+    mCode = mCodePrototype.clone();
     mValue = mCode->startValue();
   }
 
   uint64_t value() noexcept { return mCode->result(mValue); }
 
 private:
-  std::shared_ptr<const CodeBase> mCodePrototype;
+  const CodeBase &mCodePrototype;
   std::unique_ptr<CodeBase> mCode;
   
   uint64_t mValue;

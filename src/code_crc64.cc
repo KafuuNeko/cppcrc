@@ -48,13 +48,13 @@ static void initTable() {
   kTableInit = true;
 }
 
-CodeBase::SharedConstPtr CodeCrc64::ecmaInstance() {
-  static auto uniqueInstance = std::make_shared<CodeCrc64>(Type::ecma);
+const CodeBase& CodeCrc64::ecmaInstance() {
+  static CodeCrc64 uniqueInstance(Type::ecma);
   return uniqueInstance;
 }
 
-CodeBase::SharedConstPtr CodeCrc64::weInstance() {
-  static auto uniqueInstance = std::make_shared<CodeCrc64>(Type::we);
+const CodeBase& CodeCrc64::weInstance() {
+  static CodeCrc64 uniqueInstance(Type::we);
   return uniqueInstance;
 }
 

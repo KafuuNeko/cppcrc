@@ -24,8 +24,8 @@ static const uint8_t kSht75Table[256] = {
     130, 179, 224, 209, 70,  119, 36,  21,  59,  10,  89,  104, 255, 206, 157,
     172};
 
-CodeBase::SharedConstPtr CodeCrc8::instance() {
-  static auto uniqueInstance = std::make_shared<CodeCrc8>();
+const CodeBase& CodeCrc8::instance() {
+  static CodeCrc8 uniqueInstance;
   return uniqueInstance;
 }
 

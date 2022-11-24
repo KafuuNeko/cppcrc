@@ -39,8 +39,8 @@ static void initTable() {
   kTableInit = true;
 }
 
-CodeBase::SharedConstPtr CodeCrc32::instance() {
-  static auto uniqueInstance = std::make_shared<CodeCrc32>();
+const CodeBase& CodeCrc32::instance() {
+  static CodeCrc32 uniqueInstance;
   return uniqueInstance;
 }
 

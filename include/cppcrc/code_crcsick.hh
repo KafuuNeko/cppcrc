@@ -5,7 +5,7 @@ namespace cppcrc {
 
 class CodeCrcSick : public CodeBase {
 public:
-  static CodeBase::SharedConstPtr instance();
+  static const CodeBase &instance();
 
   CodeCrcSick(): mPre(0) {}
   

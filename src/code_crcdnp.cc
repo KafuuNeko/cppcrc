@@ -15,8 +15,8 @@ static std::mutex kLock;
 static bool kTableInit = false;
 static uint16_t kTable[256];
 
-CodeBase::SharedConstPtr CodeCrcDnp::instance() {
-  static auto uniqueInstance = std::make_shared<CodeCrcDnp>();
+const CodeBase& CodeCrcDnp::instance() {
+  static const CodeCrcDnp uniqueInstance;
   return uniqueInstance;
 }
 

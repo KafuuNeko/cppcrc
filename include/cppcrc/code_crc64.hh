@@ -8,8 +8,8 @@ class CodeCrc64 : public CodeBase {
 public:
   enum class Type { ecma, we };
   
-  static CodeBase::SharedConstPtr ecmaInstance();
-  static CodeBase::SharedConstPtr weInstance();
+  static const CodeBase &ecmaInstance();
+  static const CodeBase &weInstance();
 
   CodeCrc64(Type type) noexcept : mType(type) {}
 

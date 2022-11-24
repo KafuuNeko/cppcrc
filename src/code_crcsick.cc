@@ -4,8 +4,8 @@
 namespace cppcrc {
 constexpr uint16_t kPoly = 0x8005;
 
-CodeBase::SharedConstPtr CodeCrcSick::instance() {
-  static auto uniqueInstance = std::make_shared<CodeCrcSick>();
+const CodeBase& CodeCrcSick::instance() {
+  static const CodeCrcSick uniqueInstance;
   return uniqueInstance;
 }
 

@@ -9,7 +9,6 @@ class CodeBase {
   friend class Encoder;
 
 public:
-  using SharedConstPtr = std::shared_ptr<const CodeBase>;
   using UniquePtr = std::unique_ptr<CodeBase>;
 
   virtual UniquePtr clone() const noexcept = 0;

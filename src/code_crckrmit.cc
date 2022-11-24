@@ -43,8 +43,8 @@ static void initTable() {
   kInitTable = true;
 }
 
-CodeBase::SharedConstPtr CodeCrcKrmit::instance() {
-  static auto uniqueInstance = std::make_shared<CodeCrcKrmit>();
+const CodeBase& CodeCrcKrmit::instance() {
+  static const CodeCrcKrmit uniqueInstance;
   return uniqueInstance;
 }
 

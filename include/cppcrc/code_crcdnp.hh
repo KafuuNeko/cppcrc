@@ -5,7 +5,7 @@ namespace cppcrc {
 
 class CodeCrcDnp : public CodeBase {
 public:
-  static CodeBase::SharedConstPtr instance();
+  static const CodeBase &instance();
   
   virtual CodeBase::UniquePtr clone() const noexcept override {
     return std::make_unique<CodeCrcDnp>(*this);
